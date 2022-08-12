@@ -11,7 +11,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING, // tells us that the connection string is stored in the place of secrets
-    dbName = 'todo' // the name of our data base collection
+    dbName = 'fragrance-safe-products' // the name of our data base collection
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //promise syntax asking to connect using mongo client (line 4) using the connection string (line 13), using unified tolology design as node driver has seven toplogy classes 
     .then(client => { //what to do once promise is fulfilled
@@ -26,9 +26,11 @@ app.use(express.json()) // telling app/express to format objects as JSON
 
 
 app.get('/', async (request, response) => {  //promise syntax for a request from the root route
-    const todoItems = await db.collection('todos').find().toArray() // a variable awating items in the database collection and creating an array
-    const itemsLeft = await db.collection('todos').countDocuments({ completed: false }) // a varraible taking I assume counting the items in the database collection with completed of false
-    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //once promise is fulfilled use ejs to render a page using the previous two varriables. I believe this line is replacing what follows
+    const safeProducts = await db.collection('fragrance-safe-products').find().toArray()
+    console.log(safeProducts) // a variable awating items in the database collection and creating an array
+    // const itemsLeft = await db.collection('todos').countDocuments({ completed: false }) 
+// a varraible taking I assume counting the items in the database collection with completed of false
+    response.render('index.ejs', { products: safeProducts}) //once promise is fulfilled use ejs to render a page using the previous two varriables. I believe this line is replacing what follows
     // db.collection('todos').find().toArray()
     // .then(data => {  data indicates the array that was made
     //     db.collection('todos').countDocuments({completed: false})
@@ -36,8 +38,7 @@ app.get('/', async (request, response) => {  //promise syntax for a request from
     //         response.render('index.ejs', { items: data, left: itemsLeft }) //pass objects and array holding object into the ejs template to be rendered we are now naming that array "items"
     //     })
     // })
-    // .catch(error => console.error(error))
-//the .catch is currently not functioning, so this may just time out if things don't go as expected
+    //.catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => { // a promise syntax for creating new todos
