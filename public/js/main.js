@@ -2,7 +2,8 @@ const deleteBtn = document.querySelectorAll('.fa-trash') // setting variable usi
 // const item = document.querySelectorAll('.item span') // setting variable using ".item span" as selected items querySelectorAll allows for each to be targeted
 // const itemCompleted = document.querySelectorAll('.item span.completed') // setting variable using ".item span.completed" as selected items querySelectorAll allows for each to be targeted
 
-Array.from(deleteBtn).forEach((element)=>{ //???
+Array.from(deleteBtn).forEach((element, i)=>{ //???
+    element.setAttribute("id", `del${i}`)
     element.addEventListener('click', deleteItem) // use event listener to run deleteItem function line 17 in the case of a click
 })
 
