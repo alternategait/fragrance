@@ -18,19 +18,32 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1> <!-- h1 is the most important of headings there should be only one per page -->
+    <h1>Fragrance safe products list: </h1> <!-- h1 is the most important of headings there should be only one per page -->
     <ul class="todoItems"> <!-- the start of an unordered list with a class of todoItems  -->
     <% for(let i=0; i < products.length; i++) {%> <!-- this is the javascript that is embeded; we're intiating a for loop  -->
-        <li class="item"><!-- this is a list item with the class of item-->
-            <% if(products[i].completed === true) {%> <!-- if something in the item array with key of i has a completed that is true -->
-                <span class='completed'><%= products[i].name %></span> <!-- add  the text of the items.thing into this span (meant for a small bit of text) and give it class completed -->
-            <% }else{ %> <!-- if something in the item array with key of i has a completed of anything except true -->
-                <span><%= products[i].name %></span><!-- add  the text of the items.thing into this span (meant for a small bit of text) -->
-            <% } %>    
+        <li class="item">
+            <span><%= products[i].name %></span>    
+            <span class = "slant"><%= products[i].brand %></span>
             <span class='fa fa-trash'></span> <!-- another span with class of fa fa-trash (very likely to give an icon using font awesome) -->
         </li> <!-- end the list item -->
     <% } %> <!-- end the embedded javascrip -->
     </ul><!-- end the unordered list -->
+
+    <table>
+        <tr>
+            <th>product name</th>
+            <th>product brand</th>
+            <th>product type</th>
+        </tr>
+        <% for(let i=0; i < products.length; i++) {%> <!-- this is the javascript that is embeded; we're intiating a for loop  -->
+        <tr>
+            <td> <span><%= products[i].name %></span>    </td>
+            <td><span class = "slant"><%= products[i].brand %></span></td>
+            <td> <span><%= products[i].type%></span></td>
+            <!-- <span class='fa fa-trash'></span> another span with class of fa fa-trash (very likely to give an icon using font awesome) -->
+    <% } %>
+        </tr>
+    </table>
 
     <script src='js/main.js'></script> <!-- where to find the client side js -->
 </body>

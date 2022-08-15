@@ -11,7 +11,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING, // tells us that the connection string is stored in the place of secrets
-    dbName = 'fragrance-safe-products' // the name of our data base collection
+    dbName = 'fragrance-products' // the name of our data base collection
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //promise syntax asking to connect using mongo client (line 4) using the connection string (line 13), using unified tolology design as node driver has seven toplogy classes 
     .then(client => { //what to do once promise is fulfilled
