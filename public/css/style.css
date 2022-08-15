@@ -10,9 +10,9 @@ h1{
     font-style: italic;
 }
 
-table {
+table, form {
     width: 80%;
-    margin: auto;
+    margin: 2% auto;
     border-spacing: 0;
 }
 

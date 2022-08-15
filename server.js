@@ -41,48 +41,24 @@ app.get('/', async (request, response) => {  //promise syntax for a request from
     //.catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => { // a promise syntax for creating new todos
-    db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false }) // within db as defined line 19, within collection todos insert (create) a document with thing from ejs with id of todoItem and with completion status of false
-        .then(result => { //once promise is fulfilled
-            console.log('Todo Added') // let us know it is added to the database
-            response.redirect('/') // respond by refreshing the page to the root route
+    app.get('/add', async (request, response) => {
+            try {
+                const safeProducts = await db.collection('fragrance-safe-products').find().toArray()
+                response.render('add.ejs', {products: safeProducts})
+            } catch (error) {
+                response.status(500).send({message: error.message})
+            }
+        }) 
+
+        app.post("/fragrance-safe-products", (req, res) => {
+            db.collection('fragrance-safe-products').insertOne(req.body)
+                .then(result => {
+                    res.redirect('/add')
+                })
+                .catch(error => console.error (error))
         })
-        .catch(error => console.error(error)) // if the promise fails, let us know the error by consoling it
-})
 
-app.put('/markComplete', (request, response) => { // a promise syntax for updating todos
-    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, { // // within db as defined line 19, within collection todos update what follows
-        $set: { // $set operator allows updating of spcific fields
-            completed: true // updating specific field of completed to true
-        }
-    }, {
-        sort: { _id: -1 }, // not quite sure what this is about, but it looks like this allow us to sort in a way that is m ore consistent than MongoDB's default sorting
-        upsert: false // does not allow creating/adding new documents if queried document is not found
-    })
-        .then(result => {//once promise is fulfilled
-            console.log('Marked Complete') // tell us in the console it is marked complete
-            response.json('Marked Complete') // provide us a JSON object telling us marked complete and send it back to clint JS as part of fetch
-        })
-        .catch(error => console.error(error))// if the promise fails, let us know and why
 
-})
-
-app.put('/markUnComplete', (request, response) => {// a promise syntax for updating todos
-    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
-        $set: { // $set operator allows updating of spcific fields
-            completed: false // updating specific field of completed to false
-        }
-    }, {
-        sort: { _id: -1 },
-        upsert: false  //prevents creating/adding new documents if queried document is not found
-    })
-        .then(result => { //once promise is fulfilled
-            console.log('Marked Complete') // tell us in the console it is marked complete
-            response.json('Marked Complete')// provide us a JSON object telling us marked complete send it back to clint JS as part of fetch
-        })
-        .catch(error => console.error(error))// if the promise fails, let us know and why
-
-})
 
 app.delete('/deleteItem', (request, response) => { // a promise syntax for deleting an item
     db.collection('todos').deleteOne({ thing: request.body.itemFromJS }) // withthin db as defined line 19, within collection todos delete the item that matches field thing identified as itemFromJS

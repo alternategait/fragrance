@@ -22,18 +22,30 @@
 
     <table>
         <tr>
+            <th>delete</th>
             <th>product name</th>
             <th>product brand</th>
             <th>product type</th>
         </tr>
         <% for(let i=0; i < products.length; i++) {%> <!-- this is the javascript that is embeded; we're intiating a for loop  -->
         <tr class = "item">
+            <td><span class='fa fa-trash'></span> </td>
             <td> <span><%= products[i].name %></span>    </td>
             <td><span class = "slant"><%= products[i].brand %></span></td>
             <td> <span><%= products[i].type%></span></td>
+
     <% } %>
         </tr>
     </table>
+
+    <form action = "/fragrance-safe-products" method = "post">
+        <input type = "text" placeholder="Product Type" name="type">
+        <input type="text" placeholder="Brand" name="brand">
+        <input type = "text" placeholder="Product Name" name="name">
+        <input type="text" placeholder="scent type" name="scent type">
+        <input type="text" placeholder="notes" name="notes">
+        <button type="submit">SUBMIT</button>
+    </form>
 
     <script src='js/main.js'></script> <!-- where to find the client side js -->
 </body>
