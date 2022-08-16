@@ -43,6 +43,22 @@ app.post("/fragrance-safe-products", (req, res) => {
         .catch(error => console.error (error))
 })
 
+app.put('/addOneLike', (request, response) => {
+    db.collection('fragrance-safe-products').updateOne({ name: request.body.name },{
+        $set: {
+            likes:Number(request.body.likes) + 1
+            }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log('Added One Like')
+        response.json('Like Added')
+    })
+    .catch(error => console.error(error))
+
+})
 
 
 app.delete('/deleteItem', (request, response) => { 

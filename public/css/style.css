@@ -33,3 +33,6 @@ th {
 
 tr:nth-child(odd) { background-color: #e5e8ed; }
 
+.hidden {
+    display: none;
+}

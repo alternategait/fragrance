@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!DOCTYPE html>
@@ -22,12 +22,15 @@
 
     <table>
         <tr>
+            <th>use it?</th>
             <th>product name</th>
             <th>product brand</th>
             <th>product type</th>
+
         </tr>
         <% for(let i=0; i < products.length; i++) {%> <!-- this is the javascript that is embeded; we're intiating a for loop  -->
         <tr class = "item">
+            <td><span class="fa fa-heart"><%=products[i].likes%></span></td>
             <td> <span><%= products[i].name %></span>    </td>
             <td><span class = "slant"><%= products[i].brand %></span></td>
             <td> <span><%= products[i].type%></span></td>

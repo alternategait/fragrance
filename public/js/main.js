@@ -1,14 +1,13 @@
-const deleteBtn = document.querySelectorAll('.fa-trash') // setting variable using .fa-trash icon as selected items querySelectorAll allows for each to be targeted
-// const item = document.querySelectorAll('.item span') // setting variable using ".item span" as selected items querySelectorAll allows for each to be targeted
-// const itemCompleted = document.querySelectorAll('.item span.completed') // setting variable using ".item span.completed" as selected items querySelectorAll allows for each to be targeted
+const deleteBtn = document.querySelectorAll('.fa-trash') 
+const likesBtn = document.querySelectorAll('.fa-heart')
 
-Array.from(deleteBtn).forEach((element, i)=>{ //???
+Array.from(deleteBtn).forEach((element, i)=>{
     element.addEventListener('click', deleteItem) // use event listener to run deleteItem function line 17 in the case of a click
 })
 
-// Array.from(item).forEach((element)=>{//???
-//     element.addEventListener('click', markComplete) // use event listener to run markComplete function  line 36 in the case of a click
-// })
+Array.from(likesBtn).forEach((element)=>{//???
+    element.addEventListener('click', addLike) // use event listener to run markComplete function  line 36 in the case of a click
+})
 
 // Array.from(itemCompleted).forEach((element)=>{//???
 //     element.addEventListener('click', markUnComplete) // use event listener to run markUnComplete function line 55 in the case of a click
@@ -33,7 +32,31 @@ async function deleteItem(){ //async await syntax for deleteItem function called
         console.log(err) // tell me why in the console
     }
 }
+ async function addLike(){
 
+    const productName = this.parentNode.nextElementSibling.childNodes[1].innerText
+//     const sName = this.parentNode.childNodes[1].innerText
+//     const bName = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[0].innerText)
+    console.log(tLikes)
+    try{
+        const response = await fetch('addOneLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'name': productName,
+                'likes': tLikes
+            })
+            })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
+// }
 // async function markComplete(){  // async await syntax for markComplete function called by click on line 9
 //     const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
 //     try{ //first try what follows
