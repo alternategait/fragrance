@@ -21,6 +21,15 @@
 </head>
 <body>
     <h1>Fragrance safe products list: </h1> <!-- h1 is the most important of headings there should be only one per page -->
+    <form action = "/fragrance-safe-products" method = "post">
+        <input type = "text" placeholder="Product Type" name="type">
+        <input type="text" placeholder="Brand" name="brand">
+        <input type = "text" placeholder="Product Name" name="name">
+        <input type="text" placeholder="scent type" name="scent type">
+        <input type="text" placeholder="notes" name="notes">
+        <input class="hidden" type="number" name="likes" value=0>
+        <button type="submit">SUBMIT</button>
+    </form>
 
     <table>
         <tr>
@@ -40,15 +49,7 @@
         </tr>
     </table>
 
-    <form action = "/fragrance-safe-products" method = "post">
-        <input type = "text" placeholder="Product Type" name="type">
-        <input type="text" placeholder="Brand" name="brand">
-        <input type = "text" placeholder="Product Name" name="name">
-        <input type="text" placeholder="scent type" name="scent type">
-        <input type="text" placeholder="notes" name="notes">
-        <input class="hidden" type="number" name="likes" value=0>
-        <button type="submit">SUBMIT</button>
-    </form>
+
 
     <script src='js/main.js'></script> <!-- where to find the client side js -->
 </body>
