@@ -2,8 +2,8 @@
 
 A fullstack CRUD application hosted on Heroku with MongoDB backend intended to store information about house and personal care products safe for people with fragrance allergies/sensitivities. 
 
-<img width="800" alt="Screen Shot 2022-08-16 at 3 47 43 PM" src="https://user-images.githubusercontent.com/102367926/184971808-a8fa47d9-31a3-4032-8cc4-5d8d56ea88d8.png">
-![Screen Shot 2022-08-17 at 12 03 48 PM](https://user-images.githubusercontent.com/102367926/185188253-f7e0288e-ab81-4f19-8c4c-3f3eb538773f.png)
+<img width="800" alt="Screen Shot of Scentsitive Fragrance Products home page" src="https://user-images.githubusercontent.com/102367926/184971808-a8fa47d9-31a3-4032-8cc4-5d8d56ea88d8.png">
+<img width = "800 alt = "screenshot of page to add information" src="https://user-images.githubusercontent.com/102367926/185188253-f7e0288e-ab81-4f19-8c4c-3f3eb538773f.png">
 
 https://scentsitveproducts.herokuapp.com/
 
