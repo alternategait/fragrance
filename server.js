@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 let db,
-    dbConnectionStr = process.env.DB_STRING, 
+    dbConnectionStr = process.env.DBSTRING, 
     dbName = 'fragrance-products' // the name of our data base the collection to access later is fragrance-safe-products
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) 
