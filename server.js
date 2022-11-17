@@ -3,13 +3,13 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
-const client = new MongoClient(dbConnectionStr)
+// const client = new MongoClient(dbConnectionStr)
 
 
 let db,
     dbConnectionStr = process.env.DBSTRING,
     dbName = 'fragrance-products' // the name of our data base the collection to access later is fragrance-safe-products
-
+const client = new MongoClient(dbConnectionStr)
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) 
     .then(client => { 
         console.log(`Connected to ${dbName} Database`) 
