@@ -1,12 +1,13 @@
 const express = require('express')
 const app = express()
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient x
 const PORT = 2121
 require('dotenv').config()
+const client = new MongoClient(dbConnectionStr)
 
 
 let db,
-    dbConnectionStr = process.env.DBSTRING, 
+    dbConnectionStr = process.env.DBSTRING, x
     dbName = 'fragrance-products' // the name of our data base the collection to access later is fragrance-safe-products
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) 
@@ -71,6 +72,14 @@ app.delete('/deleteItem', (request, response) => {
         .catch(error => console.error(error)) 
 })
 
-app.listen(process.env.PORT || PORT, () => { 
-    console.log(`Server running on port ${PORT}`) 
-})
+// app.listen(process.env.PORT || PORT, () => { 
+//     console.log(`Server running on port ${PORT}`) 
+// })
+
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(process.env.PORT || PORT, () => {
+        console.log("listening for requests");
+    })
+});
